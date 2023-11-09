@@ -7,6 +7,7 @@ import { AddPizzaForm } from "./components/AddPizzaForm";
 
 import { DisplayPizzas } from "./components/DisplayPizzas";
 
+
 const App: FC = () => {
   const [pizzaList, setPizzaList] = useState<Pizza[]>([]);
 
