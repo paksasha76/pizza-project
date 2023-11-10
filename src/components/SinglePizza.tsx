@@ -7,14 +7,20 @@ import { EditPizzaForm } from "./EditPizzaForm";
 
 interface SinglePizzasProps {
   pizza: Pizza;
+  updatePizza: (newPizza: Pizza) => void
+  deletePizza: (id: number) => void
 }
 
-export const SinglePizzas: FC<SinglePizzasProps> = ({ pizza }) => {
+export const SinglePizzas: FC<SinglePizzasProps> = ({ pizza, updatePizza, deletePizza}) => {
 
     const [edit, setEdit] = useState<boolean>(false)
 
     function handleToggleEdit() {
         setEdit(!edit)
+    }
+
+    function handleDelete() {
+      deletePizza(pizza.id)
     }
 
   return (
@@ -24,10 +30,10 @@ export const SinglePizzas: FC<SinglePizzasProps> = ({ pizza }) => {
       <span>{pizza.price}</span>
       <div className="pizza-controls">
         <AiFillEdit onClick={handleToggleEdit}/>
-        <AiFillDelete />
+        <AiFillDelete onClick={handleDelete}/>
       </div>
       {
-        edit ? <EditPizzaForm data={pizza}/> : null
+        edit ? <EditPizzaForm data={pizza} updatePizza={updatePizza} handleToggleEdit={handleToggleEdit}/> : null
       }
     </div>
   );
